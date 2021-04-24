@@ -1,6 +1,11 @@
-<div>
-    <img *ngFor="let image of images; let i = index" 
-        src="{{image}}" 
+<div class="imageContainer" *ngFor="let image of images; let i = index">
+    <img src="/assets/lilx.png" 
+        class="lilx"
+        *ngFor="let event of events[i]"
+        [style.left]="event.x - 4 + 'px'"
+        [style.top]="event.y - 4 + 'px'">
+        <!-- note that position - 4 is to center the 'x' -->
+    <img src="{{image}}" 
         (click)="recordEvent(i, $event)">
 </div>
 <button (click)="downloadEvents()">Download</button>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import * as _ from 'lodash';
 import { ImageSource } from '../types';
 
 @Component({
@@ -26,10 +27,14 @@ export class ImageLoaderComponent implements OnInit {
       reader.onload = e => {
         if (e.target?.result) {
           images.push(e.target.result)
+
+          // actually emit after the last image loads
+          if (images.length === files.length){
+            this.imagesLoadedEvent.emit(images);
+          } 
         }
       }
       reader.readAsDataURL(element)
     }
-    this.imagesLoadedEvent.emit(images);
   }
 }
