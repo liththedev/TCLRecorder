@@ -1,6 +1,12 @@
 .imageContainer {
-    position: relative
+    position: relative;
 }
 .lilx {
-    position: absolute
+    position: absolute;
+}
+.bottom {
+    display: flex;
+}
+.divider {
+    flex-grow: 1;
 }
