@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TCLRecorder';
+
+  images: any[] = []
+
+  setImages(images: any[]) {
+    this.images = images
+  }
 }

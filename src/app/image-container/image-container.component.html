@@ -1,0 +1,6 @@
+<div>
+    <img *ngFor="let image of images; let i = index" 
+        src="{{image}}" 
+        (click)="recordEvent(i, $event)">
+</div>
+<button (click)="downloadEvents()">Download</button>
