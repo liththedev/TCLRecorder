@@ -5,9 +5,3 @@
     position: absolute;
     pointer-events: none;
 }
-.bottom {
-    display: flex;
-}
-.divider {
-    flex-grow: 1;
-}

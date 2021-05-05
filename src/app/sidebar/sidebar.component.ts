@@ -36,4 +36,21 @@ export class SidebarComponent implements OnInit {
       reader.readAsDataURL(element)
     }
   }
+
+  downloadEvents() {
+    const contents = _.chain(this.events.events)
+      .flatten()
+      .sortBy(event => event.timestamp)
+      .map(event => 
+        `${event.timestamp.getTime()},${event.image},${event.x},${event.y},${event.type}`)
+      .join('\n')
+      .value()
+    const blob = new Blob([contents], {type: 'text/csv'})
+    const url = window.URL.createObjectURL(blob)
+    let anchor = document.createElement("a")
+    anchor.download = "events.csv"
+    anchor.href = url
+    anchor.click()
+    window.URL.revokeObjectURL(url)
+  }
 }

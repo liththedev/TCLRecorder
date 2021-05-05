@@ -1,2 +1,7 @@
-<input type="file" class="file-input" 
-       (change)="onFileSelected($event)" multiple>
+<div class="container">
+       <input type="file" class="file-input" 
+              (change)="onFileSelected($event)" multiple>
+       <button (click)="downloadEvents()">Download Events</button>
+       <div class="divider"></div>
+       <a href="https://github.com/liththedev/TCLRecorder">Source Code</a>
+</div>
