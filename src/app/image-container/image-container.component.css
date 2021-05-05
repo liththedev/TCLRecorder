@@ -3,6 +3,7 @@
 }
 .lilx {
     position: absolute;
+    pointer-events: none;
 }
 .bottom {
     display: flex;
