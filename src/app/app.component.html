@@ -1,4 +1,6 @@
-<div>
-    <app-image-loader (imagesLoadedEvent)='setImages($event)'></app-image-loader>
+<div class="sidebar">
+    <app-sidebar></app-sidebar>
 </div>
-<app-image-container [images]='images'></app-image-container>
+<div class="images">
+    <app-image-container></app-image-container>
+</div>

@@ -2,6 +2,7 @@ import { ElementRef } from '@angular/core'
 import { Component, Input, OnInit, ViewChild } from '@angular/core'
 import { EventType, ImageSource, TCLEvent } from '../types'
 import * as _ from 'lodash'
+import { EventsService } from '../events.service'
 
 @Component({
   selector: 'app-image-container',
@@ -10,42 +11,18 @@ import * as _ from 'lodash'
 })
 export class ImageContainerComponent implements OnInit {
 
-  _images: ImageSource[] = []
-  events: TCLEvent[][] = []
-
-  constructor() {}
+  constructor(public events: EventsService) { }
 
   ngOnInit(): void {
   }
 
-  @Input()
-  set images(value: ImageSource[]) {
-    this._images = value
-    this.events = new Array(value.length)
-    for (let i = 0; i < value.length; i++) {
-      this.events[i] = []
-    }
-    console.log(this.events)
-  }
-
-  get images() {
-    return this._images
-  }
-
-
-  recordEvent(image: number, event: MouseEvent) {
-    this.events[image].push({
-      timestamp: new Date(),
-      image: image,
-      x: event.offsetX,
-      y: event.offsetY,
-      type: EventType.Death
-    })
-    console.log(this.events)
+  recordDeath(image: number, event: MouseEvent) {
+    this.events.recordDeath(image, event.offsetX, event.offsetY)
+    console.log(this.events.events)
   }
 
   downloadEvents() {
-    const contents = _.chain(this.events)
+    const contents = _.chain(this.events.events)
       .flatten()
       .map(event => 
         `${event.timestamp.getTime()},${event.image},${event.x},${event.y},${event.type}`)

@@ -1,18 +1,16 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import * as _ from 'lodash';
+import { EventsService } from '../events.service';
 import { ImageSource } from '../types';
 
 @Component({
-  selector: 'app-image-loader',
-  templateUrl: './image-loader.component.html',
-  styleUrls: ['./image-loader.component.css']
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.css']
 })
-export class ImageLoaderComponent implements OnInit {
+export class SidebarComponent implements OnInit {
 
-  @Output()
-  imagesLoadedEvent = new EventEmitter<any[]>()
-
-  constructor() {
+  constructor(private events: EventsService) {
    }
 
   ngOnInit(): void {
@@ -29,8 +27,9 @@ export class ImageLoaderComponent implements OnInit {
           images.push(e.target.result)
 
           // actually emit after the last image loads
+          // todo: handle errors
           if (images.length === files.length){
-            this.imagesLoadedEvent.emit(images);
+            this.events.images = images;
           } 
         }
       }

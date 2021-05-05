@@ -1,7 +1,9 @@
 export type ImageSource = string | ArrayBuffer;
 
 export enum EventType {
-    Death = "DEATH"
+    Death = "DEATH",
+    CP1 = "CP1",
+    CP2 = "CP2",
 }
 export interface TCLEvent {
   timestamp: Date
