@@ -24,6 +24,7 @@ export class ImageContainerComponent implements OnInit {
   downloadEvents() {
     const contents = _.chain(this.events.events)
       .flatten()
+      .sortBy(event => event.timestamp)
       .map(event => 
         `${event.timestamp.getTime()},${event.image},${event.x},${event.y},${event.type}`)
       .join('\n')
