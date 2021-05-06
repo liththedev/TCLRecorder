@@ -65,8 +65,10 @@ export class SidebarComponent implements OnInit {
     this.events.stopwatch.stop()
   }
 
-  resetTimer() {
+  reset() {
+    if (!confirm("This will reset the timer and all event data, are you sure?")) return
     this.events.stopwatch.reset()
+    this.events.resetEvents()
   }
 
   getTimer() {

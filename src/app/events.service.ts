@@ -23,11 +23,7 @@ export class EventsService {
 
   set images(images: ImageSource[]) {
     this._images = images
-    this._eventsByImage = []
-    for (let i = 0; i < images.length; i++) {
-      this._eventsByImage.push([])
-    }
-    console.log(this._eventsByImage)
+    this.resetEvents()
   }
 
   get eventsByImage() {
@@ -101,5 +97,14 @@ export class EventsService {
       _.pull(this.eventsByImage[i], eventToRemove)
     }
     _.pull(this.globalEvents, eventToRemove)
+  }
+
+  resetEvents() {
+    this._eventsByImage = []
+    for (let i = 0; i < this.images.length; i++) {
+      this._eventsByImage.push([])
+    }
+    this._globalEvents = []
+    this._allEvents = []
   }
 }
