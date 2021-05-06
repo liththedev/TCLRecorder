@@ -31,8 +31,7 @@ export class ImageContainerComponent implements OnInit {
   }
 
   recordDeath(image: number, event: MouseEvent) {
-    let progress = prompt("%") || "0"
-    this.events.recordDeath(image, event.offsetX, event.offsetY, Number.parseFloat(progress))
+    this.events.recordDeath(image, event.offsetX, event.offsetY)
     console.log(this.events.eventsByImage)
   }
 }

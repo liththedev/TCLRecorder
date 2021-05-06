@@ -42,9 +42,11 @@ export class EventsService {
     return this._stopwatch
   }
 
-  recordDeath(image: number, x: number, y: number, progress: number) {
+  recordDeath(image: number, x: number, y: number) {
+    const timestamp = this.stopwatch.duration().seconds()
+    const progress = Number.parseFloat(prompt("%") || "0")
     const event = {
-      timestamp: this.stopwatch.duration().seconds(),
+      timestamp,
       image,
       x,
       y,
