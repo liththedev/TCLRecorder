@@ -1,3 +1,9 @@
+.block {
+    display: flex;
+}
+.arrow {
+    cursor: pointer;
+}
 .imageContainer {
     position: relative;
 }
