@@ -51,7 +51,8 @@ export class SidebarComponent implements OnInit {
     const blob = new Blob([contents], {type: 'text/csv'})
     const url = window.URL.createObjectURL(blob)
     let anchor = document.createElement("a")
-    anchor.download = "events.csv"
+    let name = prompt("File name?") || "events"
+    anchor.download = name + ".csv"
     anchor.href = url
     anchor.click()
     window.URL.revokeObjectURL(url)
