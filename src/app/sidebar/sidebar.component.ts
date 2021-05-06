@@ -45,7 +45,7 @@ export class SidebarComponent implements OnInit {
     const contents = _.chain(this.events.allEvents)
       .sortBy(event => event.timestamp)
       .map(event => 
-        `${event.timestamp},${event.image},${event.x},${event.y},${event.type}`)
+        `${event.timestamp},${event.image},${event.x},${event.y},${event.type},${event.progress}`)
       .join('\n')
       .value()
     const blob = new Blob([contents], {type: 'text/csv'})

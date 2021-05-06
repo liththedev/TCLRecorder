@@ -6,8 +6,8 @@
     top: 0;
     left: 0;
     overflow-x: hidden;
-    border-right: 5px grey;
     display: flex;
+    background-color: lavender;
 }
 .images {
     margin-left: 100px;

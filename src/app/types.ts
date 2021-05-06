@@ -12,4 +12,5 @@ export interface TCLEvent {
   x: number
   y: number
   type: EventType
+  progress: number
 }

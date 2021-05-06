@@ -42,13 +42,14 @@ export class EventsService {
     return this._stopwatch
   }
 
-  recordDeath(image: number, x: number, y: number) {
+  recordDeath(image: number, x: number, y: number, progress: number) {
     const event = {
       timestamp: this.stopwatch.duration().seconds(),
       image,
       x,
       y,
-      type: EventType.Death
+      type: EventType.Death,
+      progress
     }
     this._eventsByImage[image].push(event)
     this._allEvents.push(event)
@@ -60,7 +61,8 @@ export class EventsService {
       image: NaN,
       x: NaN,
       y: NaN,
-      type: EventType.CP1
+      type: EventType.CP1,
+      progress: NaN
     }
     this._globalEvents.push(event)
     this._allEvents.push(event)
@@ -72,7 +74,8 @@ export class EventsService {
       image: NaN,
       x: NaN,
       y: NaN,
-      type: EventType.CP2
+      type: EventType.CP2,
+      progress: NaN
     }
     this._globalEvents.push(event)
     this._allEvents.push(event)
@@ -84,7 +87,8 @@ export class EventsService {
       image: NaN,
       x: NaN,
       y: NaN,
-      type: EventType.Finish
+      type: EventType.Finish,
+      progress: NaN
     } 
     this._globalEvents.push(event)
     this._allEvents.push(event)
