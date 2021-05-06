@@ -44,6 +44,7 @@ export class SidebarComponent implements OnInit {
   downloadEvents() {
     const contents = _.chain(this.events.events)
       .flatten()
+      .concat(this.events.globalEvents)
       .sortBy(event => event.timestamp)
       .map(event => 
         `${event.timestamp},${event.image},${event.x},${event.y},${event.type}`)
@@ -72,5 +73,18 @@ export class SidebarComponent implements OnInit {
 
   getTimer() {
     return this.events.stopwatch.duration().format()
+  }
+
+  recordCP1() {
+    this.events.recordCP1()
+  }
+
+  recordCP2() {
+    this.events.recordCP2()
+  }
+
+  recordFinish() {
+    this.events.recordFinish()
+    this.events.stopwatch.stop()
   }
 }

@@ -9,6 +9,7 @@ export class EventsService {
 
   private _images: ImageSource[] = []
   private _events: TCLEvent[][] = []
+  private _globalEvents: TCLEvent[] = []
 
   private _stopwatch: any = stopwatch()
 
@@ -31,6 +32,10 @@ export class EventsService {
     return this._events
   }
 
+  get globalEvents() {
+    return this._globalEvents
+  }
+
   get stopwatch() {
     return this._stopwatch
   }
@@ -42,6 +47,36 @@ export class EventsService {
       x,
       y,
       type: EventType.Death
+    })
+  }
+
+  recordCP1() {
+    this._globalEvents.push({
+      timestamp: this.stopwatch.duration().seconds(),
+      image: NaN,
+      x: NaN,
+      y: NaN,
+      type: EventType.CP1
+    })
+  }
+
+  recordCP2() {
+    this._globalEvents.push({
+      timestamp: this.stopwatch.duration().seconds(),
+      image: NaN,
+      x: NaN,
+      y: NaN,
+      type: EventType.CP2
+    })
+  }
+
+  recordFinish() {
+    this._globalEvents.push({
+      timestamp: this.stopwatch.duration().seconds(),
+      image: NaN,
+      x: NaN,
+      y: NaN,
+      type: EventType.Finish
     })
   }
 }

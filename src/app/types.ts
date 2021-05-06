@@ -4,6 +4,7 @@ export enum EventType {
     Death = "DEATH",
     CP1 = "CP1",
     CP2 = "CP2",
+    Finish = "FINISH",
 }
 export interface TCLEvent {
   timestamp: number
