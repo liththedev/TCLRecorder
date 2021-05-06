@@ -107,4 +107,8 @@ export class EventsService {
     this._globalEvents = []
     this._allEvents = []
   }
+
+  eventsExist() {
+    return this.allEvents.length > 0
+  }
 }

@@ -1,7 +1,11 @@
 <div class="block" *ngFor="let image of events.images; let i = index">
     <div>
-        <div class="arrow" (click)="shiftUp(i)">▲</div>
-        <div class="arrow" (click)="shiftDown(i)">▼</div>
+        <div class="arrow" 
+            [style.color]="events.eventsExist() ? 'grey' : 'black'"
+            (click)="shiftUp(i)">▲</div>
+        <div class="arrow" 
+            [style.color]="events.eventsExist() ? 'grey' : 'black'"
+            (click)="shiftDown(i)">▼</div>
     </div>
     <div class="imageContainer">
         <img src="./assets/lilx.png" 

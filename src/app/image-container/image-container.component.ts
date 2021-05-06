@@ -15,7 +15,7 @@ export class ImageContainerComponent implements OnInit {
   }
 
   shiftUp(image: number) {
-    if (image === 0) return
+    if (image === 0 || this.events.eventsExist()) return
     let images = this.events.images;
     const imageToShift = images.splice(image, 1)[0]
     images.splice(image - 1, 0, imageToShift)
@@ -23,7 +23,7 @@ export class ImageContainerComponent implements OnInit {
   }
 
   shiftDown(image: number) {
-    if (image === this.events.images.length - 1) return
+    if (image === this.events.images.length - 1 || this.events.eventsExist()) return
     let images = this.events.images;
     const imageToShift = images.splice(image, 1)[0]
     images.splice(image + 1, 0, imageToShift)

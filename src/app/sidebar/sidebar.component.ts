@@ -12,7 +12,7 @@ import { ImageSource } from '../types';
 export class SidebarComponent implements OnInit {
 
   constructor(
-    private events: EventsService,
+    public events: EventsService,
     private changeDetector: ChangeDetectorRef) {
    }
 

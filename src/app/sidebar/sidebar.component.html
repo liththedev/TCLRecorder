@@ -1,5 +1,6 @@
 <div class="container">
        <input type="file" class="file-input" 
+              [disabled]="events.eventsExist()"
               (change)="onFileSelected($event)" multiple>
        <button (click)="downloadEvents()">Download Events</button>
        <button (click)="startTimer()">Start</button>
