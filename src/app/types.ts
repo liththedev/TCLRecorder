@@ -6,7 +6,7 @@ export enum EventType {
     CP2 = "CP2",
 }
 export interface TCLEvent {
-  timestamp: Date
+  timestamp: number
   image: number
   x: number
   y: number

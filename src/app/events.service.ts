@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EventType, ImageSource, TCLEvent } from './types';
+import { stopwatch } from 'durations';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class EventsService {
   private _images: ImageSource[] = []
   private _events: TCLEvent[][] = []
 
+  private _stopwatch: any = stopwatch()
 
   constructor() { }
 
@@ -29,9 +31,13 @@ export class EventsService {
     return this._events
   }
 
+  get stopwatch() {
+    return this._stopwatch
+  }
+
   recordDeath(image: number, x: number, y: number) {
     this._events[image].push({
-      timestamp: new Date(),
+      timestamp: this.stopwatch.duration().seconds(),
       image,
       x,
       y,

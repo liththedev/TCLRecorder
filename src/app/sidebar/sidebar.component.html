@@ -2,6 +2,10 @@
        <input type="file" class="file-input" 
               (change)="onFileSelected($event)" multiple>
        <button (click)="downloadEvents()">Download Events</button>
+       <button (click)="startTimer()">Start</button>
+       <button (click)="stopTimer()">Pause</button>
+       <button (click)="resetTimer()">Restart</button>
+       <div>{{getTimer()}}</div>
        <div class="divider"></div>
        <a href="https://github.com/liththedev/TCLRecorder">Source Code</a>
 </div>

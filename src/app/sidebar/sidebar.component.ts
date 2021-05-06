@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import * as _ from 'lodash';
 import { EventsService } from '../events.service';
 import { ImageSource } from '../types';
@@ -6,14 +6,18 @@ import { ImageSource } from '../types';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(private events: EventsService) {
+  constructor(
+    private events: EventsService,
+    private changeDetector: ChangeDetectorRef) {
    }
 
   ngOnInit(): void {
+    setInterval(() => this.changeDetector.detectChanges(), 100)
   }
 
   onFileSelected(event: Event): void {
@@ -42,7 +46,7 @@ export class SidebarComponent implements OnInit {
       .flatten()
       .sortBy(event => event.timestamp)
       .map(event => 
-        `${event.timestamp.getTime()},${event.image},${event.x},${event.y},${event.type}`)
+        `${event.timestamp},${event.image},${event.x},${event.y},${event.type}`)
       .join('\n')
       .value()
     const blob = new Blob([contents], {type: 'text/csv'})
@@ -52,5 +56,21 @@ export class SidebarComponent implements OnInit {
     anchor.href = url
     anchor.click()
     window.URL.revokeObjectURL(url)
+  }
+
+  startTimer() {
+    this.events.stopwatch.start()
+  }
+
+  stopTimer() {
+    this.events.stopwatch.stop()
+  }
+
+  resetTimer() {
+    this.events.stopwatch.reset()
+  }
+
+  getTimer() {
+    return this.events.stopwatch.duration().format()
   }
 }
