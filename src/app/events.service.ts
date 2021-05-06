@@ -44,14 +44,15 @@ export class EventsService {
 
   recordDeath(image: number, x: number, y: number) {
     const timestamp = this.stopwatch.duration().seconds()
-    const progress = Number.parseFloat(prompt("%") || "0")
+    const progress = prompt("%")
+    if (!progress) return
     const event = {
       timestamp,
       image,
       x,
       y,
       type: EventType.Death,
-      progress
+      progress: Number.parseFloat(progress)
     }
     this._eventsByImage[image].push(event)
     this._allEvents.push(event)
