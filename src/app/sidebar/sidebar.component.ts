@@ -42,9 +42,7 @@ export class SidebarComponent implements OnInit {
   }
 
   downloadEvents() {
-    const contents = _.chain(this.events.events)
-      .flatten()
-      .concat(this.events.globalEvents)
+    const contents = _.chain(this.events.allEvents)
       .sortBy(event => event.timestamp)
       .map(event => 
         `${event.timestamp},${event.image},${event.x},${event.y},${event.type}`)
@@ -86,5 +84,9 @@ export class SidebarComponent implements OnInit {
   recordFinish() {
     this.events.recordFinish()
     this.events.stopwatch.stop()
+  }
+
+  undo() {
+    this.events.undoLastEvent()
   }
 }

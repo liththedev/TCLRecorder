@@ -6,7 +6,7 @@
     <div class="imageContainer">
         <img src="./assets/lilx.png" 
             class="lilx"
-            *ngFor="let event of events.events[i]"
+            *ngFor="let event of events.eventsByImage[i]"
             [style.left]="event.x - 4 + 'px'"
             [style.top]="event.y - 4 + 'px'">
             <!-- note that position - 4 is to center the 'x' -->

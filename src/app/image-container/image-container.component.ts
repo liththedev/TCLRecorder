@@ -32,6 +32,6 @@ export class ImageContainerComponent implements OnInit {
 
   recordDeath(image: number, event: MouseEvent) {
     this.events.recordDeath(image, event.offsetX, event.offsetY)
-    console.log(this.events.events)
+    console.log(this.events.eventsByImage)
   }
 }
