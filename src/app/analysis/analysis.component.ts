@@ -74,7 +74,9 @@ export class AnalysisComponent implements OnInit {
     var data = [trace1, trace2, trace3];
     var layout = {
       showlegend: false,
-      autosize: true,
+      autosize: false,
+      height: dimens.height,
+      width: dimens.width,
       hovermode: 'closest',
       xaxis: {
         visible: false,
