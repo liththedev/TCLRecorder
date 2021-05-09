@@ -1,0 +1,15 @@
+.sidebar {
+    height: 100%;
+    width: 100px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    display: flex;
+    background-color: lavender;
+}
+.images {
+    margin-left: 100px;
+    padding: 0px 10px;
+}
