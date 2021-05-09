@@ -28,22 +28,25 @@ export class AnalysisComponent implements OnInit {
       }
     })
     img.src = this.events.images[i] as string
-    
+
     const dimens : any = await promise
-    console.log(dimens)
-    
-    // var trace1 = {
-    //   x: x,
-    //   y: y,
-    //   mode: 'markers',
-    //   name: 'points',
-    //   marker: {
-    //     color: 'rgb(256,0,0)',
-    //     size: 8,
-    //     symbol: 'x',
-    //   },
-    //   type: 'scatter'
-    // };
+    const BUCKETS = 1000
+    const yBuckets = Math.round(Math.sqrt(BUCKETS/(dimens.width/dimens.height)))
+    const xBuckets = Math.round(BUCKETS / yBuckets)
+    console.log({xBuckets, yBuckets})
+
+    var trace1 = {
+      x: x,
+      y: y,
+      mode: 'markers',
+      name: 'points',
+      marker: {
+        color: 'rgb(256,0,0)',
+        size: 2,
+        symbol: 'circle',
+      },
+      type: 'scatter'
+    };
     var trace2 = {
       x: x,
       y: y,
@@ -56,8 +59,8 @@ export class AnalysisComponent implements OnInit {
       showscale: false,
       opacity: 0.7,
       type: 'histogram2dcontour',
-      nbinsx: Math.round(dimens.width / 20),
-      nbinsy: Math.round(dimens.height / 20),
+      nbinsx: Math.round(dimens.width / 50),
+      nbinsy: Math.round(dimens.height / 50),
       line: {
         width: 0
       }
@@ -68,7 +71,7 @@ export class AnalysisComponent implements OnInit {
       hoverinfo: 'none',
       source: this.events.images[i],
     };
-    var data = [trace2, trace3];
+    var data = [trace1, trace2, trace3];
     var layout = {
       showlegend: false,
       autosize: true,
