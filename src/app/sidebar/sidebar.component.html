@@ -1,8 +1,15 @@
 <div class="container">
-       <input type="file" class="file-input" 
-              [disabled]="events.eventsExist()"
-              (change)="onFileSelected($event)" multiple>
+       <input type="file" class="file-input" #imagesInput
+              hidden="true"
+              (change)="onImageFilesSelected($event)" multiple>
+       <button (click)="imagesInput.click()"
+              [disabled]="events.eventsExist()">Upload Maps</button>
        <button (click)="downloadEvents()">Download Events</button>
+       <input type="file" class="file-input" #eventsInput
+              hidden="true"
+              (change)="onEventFilesSelected($event)" multiple>
+       <button (click)="eventsInput.click()"
+              [disabled]="events.eventsExist() || !events.imagesExist()">Upload Events</button>
        <button (click)="startTimer()">Start</button>
        <button (click)="stopTimer()">Pause</button>
        <button (click)="reset()">Reset</button>

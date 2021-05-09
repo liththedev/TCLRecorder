@@ -1,4 +1,4 @@
-export type ImageSource = string | ArrayBuffer;
+export type FileData = string | ArrayBuffer;
 
 export enum EventType {
     Death = "DEATH",

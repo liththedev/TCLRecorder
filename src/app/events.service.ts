@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EventType, ImageSource, TCLEvent } from './types';
+import { EventType, FileData, TCLEvent } from './types';
 import { stopwatch } from 'durations';
 import * as _ from 'lodash';
 
@@ -8,7 +8,7 @@ import * as _ from 'lodash';
 })
 export class EventsService {
 
-  private _images: ImageSource[] = []
+  private _images: FileData[] = []
   private _eventsByImage: TCLEvent[][] = []
   private _globalEvents: TCLEvent[] = []
   private _allEvents: TCLEvent[] = []
@@ -21,7 +21,7 @@ export class EventsService {
     return this._images
   }
 
-  set images(images: ImageSource[]) {
+  set images(images: FileData[]) {
     this._images = images
     this.resetEvents()
   }
@@ -36,6 +36,22 @@ export class EventsService {
 
   get allEvents() {
     return this._allEvents
+  }
+
+  set allEvents(events: TCLEvent[]) {
+    this.resetEvents()
+    this._allEvents = events
+    events.forEach(event => {
+      if (event.type === EventType.Death) {
+        if (event.image >= this.images.length) {
+          console.warn(`found events for unknown image ${event}`);
+        } else {
+          this.eventsByImage[event.image].push(event)
+        }
+      } else {
+        this.globalEvents.push(event)
+      }
+    })
   }
 
   get stopwatch() {
@@ -117,5 +133,9 @@ export class EventsService {
 
   eventsExist() {
     return this.allEvents.length > 0
+  }
+
+  imagesExist() {
+    return this.images.length > 0
   }
 }
